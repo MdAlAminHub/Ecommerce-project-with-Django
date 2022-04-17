@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=8">
+    
+    <h1 style="text-align:right;" class="alert alert-warning text-center">INVOICE # {{ invoice.user.id }}</h1>
+    <meta name="generator" content="Invoice">
+    <h1 style="text-align:left;" class="alert alert-warning text-center">Grocery Store </h1>
+    <p>House :180,Road:8 <br>Mirpur-10,Dhaka -1200<br>Contact:01793912259<br>Email:gstore@gmail.com</p>
+    <br>
+</head>
+
+<body>
+    <div id="page_1">
+        <table cellpadding=0 cellspacing=0 class="t1">
+            <tbody>
+                <tr>
+                    <td class="order-number-text"><b>Order Number</b></td>
+                    <td class="order-number"><b>:</b>{{ order.id }}</td>
+                </tr>
+                <tr>
+                    <td class="order-date-text"><b>Order Date</b></td>
+                    <td class="order-date">
+                        <b>:</b>
+                        <nobr>
+                            {{order.date}}
+                            <!-- {% for product in product_obj %}
+                            {{ product.ordered_date }}
+                            {% endfor %} -->
+                        </nobr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="shipping-mode-text"><b>Shipping Mode</b></td>
+                    <td class="shipping-mode">
+                        <b>:</b> Standard
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+       
+        <br> 
+        <br>
+
+
+        <table cellpadding=0 cellspacing=0 class="t1">
+            <tbody>
+                <tr>
+                    <td class="shipping-address-text"><b><u>Shipping Address</u></b></td>
+                    <td class="billing-address-text"><b><u>Billing Address</u></b></td>
+                </tr>
+                <tr>
+                    <td class="shipper-name">User: {{ invoice.user.username }}</td>
+                    <td class="biller-name">User: {{ invoice.user.username }}</td>
+                </tr>
+                <tr>
+                    <td class="shipper-address">{{ invoice.locality }} </td>
+                    <td class="biller-address">{{ invoice.locality }} </td>
+                </tr>
+                <tr>
+                    <td class="shipper-state">{{ invoice.city }}</td>
+                    <td class="biller-state">{{ invoice.city }}</td>
+                </tr>
+                <tr>
+                    <td class="shipper-city">{{ invoice.state }}</td>
+                    <td class="biller-city">{{ invoice.state }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+{% block main-content %}
+
+<br>
+<br>
+<hr>
+
+<div class="container">
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>PRODUCT ID #</th>
+                <th>PRODUCT NAME</th>
+
+                <th>QUANTITY</th>
+                <th>PRICE</th>
+                <th>AMOUNT</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+           
+            {% for item in product_obj %}
+
+            <tr>
+                <th scope="row">{{ item.product.id }}</th>
+                <th scope="row">{{ item.product.title }}</th>
+
+                <th scope="row">{{ item.qunatity }}</th>
+                <th scope="row">{{ item.product.discounted_price }}</th>
+                <th scope="row">{{ item.total_cost }}</th>
+
+            </tr>
+            
+            {% endfor %}
+
+
+
+        </tbody>
+
+    </table>
+
+    <hr>
+
+    <p class="fw-bold">Total Cost:{{order.total}} + Shipping Tk.{{order.shipping_cost}}= {{tmat}}</p>
+</div>
+
+{% endblock %}

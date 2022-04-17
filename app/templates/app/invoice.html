@@ -1,0 +1,46 @@
+
+
+{% block title %}
+
+    Invoice New
+{% endblock %}
+
+
+
+{% block main-content %}
+
+
+    <h2 class="alert alert-warning text-center">INVOICE GENERATE</h2>
+
+    <style>
+        .container {
+            width: 500px;
+        }
+    </style>
+
+
+    <form action="" method="POST">
+
+
+        {% csrf_token %}
+
+        <div class="container">
+            <a class="btn btn-outline-primary" href="{% url 'invoice:show_invoice' %}">Invoice Lists</a>
+            <br><br>
+            <h5 class="text-danger">NEW INVOICE</h5>
+
+
+            {{ invoice_form.as_p }}
+
+            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+
+        </div>
+
+
+    </form>
+
+
+    </form>
+
+
+{% endblock %}

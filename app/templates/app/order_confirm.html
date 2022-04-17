@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %} {% load static %}
+
+
+{% block main-content %}
+
+    <div class="container">
+        <div class="text-center my-5">
+            <div class="text-center py-5">
+                <div class="order-confirm-icon">
+                    <img src="{% static 'app/images/grocery-cart.png' %}"/>
+                </div>
+                <h2>Thank you for your order!</h2>
+
+                <h6>Your Order ID: {{ order.id }}</h6>
+
+                {% for product in product_obj %}
+                    <h6>Your {{product.product.title}} Amount of {{product.qunatity}} pices is: ৳ : {{ product.total_cost }} </h6>
+
+                {% endfor %}
+
+                <h3>Your total amount: {{order.total}} </h3>
+
+
+                <p>Your order will delevered to <strong>{{ user.username }}</strong></p>
+
+                {% for data in customer_data %}
+                    <p> Shipping Address: <strong>{{ data.locality }} {{ data.city }} {{ data.state }}</strong></p>
+                    <p>Payment method :<strong>Cash on delivery</strong></p>
+
+                {% endfor %}
+                <a href="{% url 'invoice_pdf' pk=user.id odr=order.id %}">Print Invoice</a>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

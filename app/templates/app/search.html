@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+<h5 class="my-4 border-button pn-1 container"><span class="text-muted"> Search result for</span> {{request.GET.q}}</h5>
+<div class="container">
+
+    <div class="m-3">
+
+
+
+        <div class="owl-carousel" id="slider1">
+
+            {% for item in data %}
+
+            <a href="{% url 'product-detail' item.id %}" class="btn">
+                <div class="item">
+                    <img src="{{ item.product_image.url }}" alt="" height="200px" />
+                    <span class="fw-bold">{{ item.title }}</span>
+                    <span class="fs-5">Tk. {{ item.discounted_price }}</span>
+                </div>
+            </a>
+
+
+            {% endfor%}
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+{% endblock main-content %}
